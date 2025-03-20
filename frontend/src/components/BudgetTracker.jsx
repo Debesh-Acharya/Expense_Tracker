@@ -16,7 +16,6 @@ function BudgetTracker() {
   const remaining = budget - totalExpenses;
   const progress = (totalExpenses / budget) * 100;
 
-  // Budget alert logic
   useEffect(() => {
     if (budget > 0) {
       if (totalExpenses > budget) {
@@ -76,7 +75,6 @@ function BudgetTracker() {
         Total Spent: ₹{totalExpenses} / ₹{budget}
       </p>
 
-      {/* 🔔 Budget Alert */}
       {alert && (
         <div className="mt-4 p-2 bg-yellow-500 text-white font-semibold text-sm rounded-md shadow-md animate-pulse">
           {alert}

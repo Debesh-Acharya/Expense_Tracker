@@ -8,17 +8,14 @@ function ExpenseList() {
   const [editingExpense, setEditingExpense] = useState(null);
   const [editedExpense, setEditedExpense] = useState({});
 
-  // Handle expense deletion with undo
   const handleDelete = (expense) => {
     setUndoExpense(expense);
     dispatch({ type: "DELETE_EXPENSE", payload: expense.id });
 
-    // Set a timeout for undo
     const timeout = setTimeout(() => setUndoExpense(null), 5000);
     setUndoTimeout(timeout);
   };
 
-  // Restore the deleted expense
   const handleUndo = () => {
     if (undoExpense) {
       dispatch({ type: "ADD_EXPENSE", payload: undoExpense });
@@ -27,7 +24,6 @@ function ExpenseList() {
     }
   };
 
-  // Format date to "DD MMM YYYY"
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-GB", {
@@ -37,30 +33,25 @@ function ExpenseList() {
     });
   };
 
-  // Start editing an expense
   const handleEdit = (expense) => {
     setEditingExpense(expense.id);
     setEditedExpense({ ...expense });
   };
 
-  // Handle edited changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEditedExpense((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Save the edited expense
   const handleSave = () => {
     dispatch({ type: "EDIT_EXPENSE", payload: editedExpense });
     setEditingExpense(null);
   };
 
-  // Cancel editing
   const handleCancel = () => {
     setEditingExpense(null);
   };
 
-  // Ensure no stale undo reference after unmount
   useEffect(() => {
     return () => clearTimeout(undoTimeout);
   }, [undoTimeout]);
@@ -82,7 +73,6 @@ function ExpenseList() {
               key={expense.id}
               className="flex justify-between items-center py-2 px-3 hover:bg-gray-300 dark:hover:bg-gray-600 rounded transition-all duration-200"
             >
-              {/* Expense details */}
               <div className="flex flex-col text-gray-700 dark:text-gray-200">
                 {editingExpense === expense.id ? (
                   <div className="flex gap-2">
@@ -116,14 +106,12 @@ function ExpenseList() {
                 )}
               </div>
 
-              {/* Amount */}
               {editingExpense === expense.id ? null : (
                 <span className="font-semibold text-blue-600 dark:text-blue-400">
                   ₹{expense.amount}
                 </span>
               )}
 
-              {/* Action buttons */}
               <div className="flex gap-2">
                 {editingExpense === expense.id ? (
                   <>
@@ -162,7 +150,6 @@ function ExpenseList() {
         </ul>
       )}
 
-      {/* Undo snackbar */}
       {undoExpense && (
         <div className="fixed bottom-4 right-4 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg animate-slide-in">
           Expense deleted!{" "}

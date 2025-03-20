@@ -1,4 +1,3 @@
-// src/App.jsx
 import { ExpenseProvider } from "./context/ExpenseContext";
 import HomePage from "./pages/HomePage";
 import Footer from "./components/Footer";

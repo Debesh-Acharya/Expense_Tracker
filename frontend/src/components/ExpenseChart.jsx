@@ -1,10 +1,8 @@
-// src/components/ExpenseChart.jsx
 import React from "react";
 import { Pie } from "react-chartjs-2";
 import { useExpenses } from "../context/ExpenseContext";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
-// Register the chart elements
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function ExpenseChart() {
@@ -18,7 +16,6 @@ function ExpenseChart() {
     );
   }
 
-  // Categorize expenses
   const categories = expenses.reduce((acc, expense) => {
     const category = expense.category || "Other";
     acc[category] = (acc[category] || 0) + expense.amount;

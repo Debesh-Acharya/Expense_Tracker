@@ -1,7 +1,5 @@
-// src/context/ExpenseContext.jsx
 import { createContext, useContext, useReducer,useEffect } from "react";
 
-// Initial State
 const ExpenseContext = createContext();
 
 const initialState = {
@@ -11,7 +9,6 @@ const initialState = {
   monthReset: false,
 };
 
-// Reducer Function
 function expenseReducer(state, action) {
   switch (action.type) {
     case "ADD_EXPENSE":
@@ -48,7 +45,6 @@ function expenseReducer(state, action) {
   }
 }
 
-// Provider Component
 export function ExpenseProvider({ children }) {
   const [state, dispatch] = useReducer(expenseReducer, initialState);
 
@@ -85,5 +81,4 @@ export function ExpenseProvider({ children }) {
   );
 }
 
-// Custom Hook
 export const useExpenses = () => useContext(ExpenseContext);
