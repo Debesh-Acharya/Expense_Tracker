@@ -43,7 +43,7 @@ function BudgetTracker() {
           type="number"
           className="w-full pl-10 p-3 text-gray-800 placeholder-gray-600 bg-white border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
           placeholder="Set your budget..."
-          value={budget}
+          value={budget || ""}
           onChange={handleBudgetChange}
         />
       </div>
